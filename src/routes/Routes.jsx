@@ -3,6 +3,7 @@ import Root from "../Layout/Main";
 import Home from "../payes/Home/Home/Home";
 import Main from "../Layout/Main";
 import Login from "../payes/Login/Login";
+import SignUp from "../payes/SignUp/SignUp";
 
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ children: [
         {
           path: "/login",
           element: <Login></Login>
+        },
+        {
+          path: "/signup",
+          element: <SignUp></SignUp>
         }     
 
     ],
