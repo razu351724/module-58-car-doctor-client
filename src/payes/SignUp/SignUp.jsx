@@ -1,10 +1,27 @@
 import { Link } from "react-router-dom";
 import login from "../../assets/images/login/login.svg"
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
 
+    const {createUser} = useContext(AuthContext);
+
     const handleSignUp = event => {
-        event.preventDl
+        event.preventDefault()
+        // event.preventDefult(); 
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name, email, password)
+
+        createUser(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+        .catch(error => console.log(error))
     }
 
     return (
@@ -15,7 +32,7 @@ const SignUp = () => {
                         <img src={login} alt="#" />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 ">
-                        <form className="card-body">
+                        <div className="card-body">
                             <h1 className="text-4xl font-bold text-center">SignUp</h1>
                             <form onSubmit={handleSignUp}>
                                 <div className="form-control">
@@ -40,11 +57,11 @@ const SignUp = () => {
                                     </label>
                                 </div>
                                 <div className="form-control mt-6">
-                                    <input className="btn btn-primary" type="text" value="Sign Up" />
+                                    <input className="btn btn-primary" type="submit" value="Sign Up" />
                                 </div>
                                 <p className="text-center my-4">Already Have an Account? <Link className="text-[#FF3811] font-bold" to="/login">Login</Link></p>
                             </form>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

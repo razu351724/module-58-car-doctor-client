@@ -1,10 +1,26 @@
 import { Link } from "react-router-dom";
 import login from "../../assets/images/login/login.svg"
+import { AuthContext } from "../provider/AuthProvider";
+import { useContext } from "react";
 
 const Login = () => {
 
+    const {signIn} = useContext(AuthContext);
+
     const handleLogin = event => {
-        event.preventDl
+        // event.preventDefult();
+        event.preventDefault()
+        const form = event.target;
+         const email = form.email.value;
+        const password = form.password.value;
+        console.log( email, password)
+
+        signIn(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+        .catch(error => console.log(error));
     }
 
     return (
@@ -15,7 +31,7 @@ const Login = () => {
                         <img src={login} alt="#" />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 ">
-                        <form className="card-body">
+                        <div className="card-body">
                             <h1 className="text-4xl font-bold text-center">Login</h1>
                             <form onSubmit={handleLogin}>
                                 <div className="form-control">
@@ -34,11 +50,11 @@ const Login = () => {
                                     </label>
                                 </div>
                                 <div className="form-control mt-6">
-                                    <input className="btn btn-primary" type="text" value="Login" />
+                                    <input className="btn btn-primary" type="submit" value="Login" />
                                 </div>
                                 <p className="text-center my-4">New to Car Doctors <Link className="text-[#FF3811] font-semibold" to="/signup">Sign Up</Link></p>
                             </form>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
