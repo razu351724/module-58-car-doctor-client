@@ -4,7 +4,7 @@ import Home from "../payes/Home/Home/Home";
 import Main from "../Layout/Main";
 import Login from "../payes/Login/Login";
 import SignUp from "../payes/SignUp/SignUp";
-import Checkout from "../payes/Checkout/Checkout";
+import BookService from "../payes/BookService/BookService";
 import Bookings from "../payes/Bookings/Bookings";
 import PrivateRoute from "./PrivateRoute";
 
@@ -27,8 +27,8 @@ children: [
           element: <SignUp></SignUp>
         },
         {
-          path: "/checkout/:id",
-          element: <Checkout></Checkout>,
+          path: "/BookService/:id",
+          element: <BookService></BookService>,
           loader: ({params}) => fetch(`http://localhost:5100/services/${params.id}`)
         },
         {
