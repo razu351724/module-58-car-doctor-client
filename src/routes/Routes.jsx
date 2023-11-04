@@ -28,7 +28,7 @@ children: [
         },
         {
           path: "/BookService/:id",
-          element: <BookService></BookService>,
+          element: <PrivateRoute><BookService></BookService></PrivateRoute>,
           loader: ({params}) => fetch(`http://localhost:5100/services/${params.id}`)
         },
         {
